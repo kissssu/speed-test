@@ -16,7 +16,7 @@ This Bash script provides a rough estimate of your network speed using ping pack
 1.  **Clone the repository (if applicable):**
 
     ```bash
-    git clone speed-test
+    git clone https://github.com/kissssu/speed-test.git
     cd speed-test
     ```
 
