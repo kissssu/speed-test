@@ -1,83 +1,125 @@
-# Network Speed Estimator (Ping-Based)
+# Network Speed Tool (Ping-Based CLI)
 
-This Bash script provides a rough estimate of your network speed using ping packets. It sends packets of varying sizes to a specified server and calculates the speed based on the round-trip time (RTT).
+A lightweight CLI tool to estimate network speed using ICMP (ping).  
+It sends packets of different sizes to a target server and calculates an approximate speed based on RTT (round-trip time).
+
+> Simple, fast, and flexible (гибкий = flexible).
+
+---
 
 ## Features
 
-* **Ping-Based Speed Estimation:** Estimates network speed by sending ping packets of different sizes and measuring RTT.
-* **Detailed Output:** Displays packet size, average RTT, and calculated speed for each packet.
-* **Summary Information:** Shows the total number of packets sent and the number of successful packets.
-* **Average Speed Calculation:** Calculates and displays the estimated average speed in Mbps.
-* **Background Execution:** Runs the speed test in the background.
-* **Clear Output:** Formatted output for better readability.
+- **CLI-Based Tool**  
+  Fully customizable using command-line arguments
 
-## How to Run/Clone
+- **Server Selection**  
+  Choose any target server (default: 8.8.8.8)
 
-1.  **Clone the repository (if applicable):**
+- **Custom Packet Sizes**  
+  Define your own packet sizes for testing
 
-    ```bash
-    git clone https://github.com/kissssu/speed-test.git
-    cd speed-test
-    ```
+- **Adjustable Test Count**  
+  Control how many ping requests are sent per test
 
-2.  **Make the script executable:**
+- **Clean Table Output**  
+  Professional and aligned results display
 
-    ```bash
-    chmod +x speed.sh
-    ```
+- **Progress Bar UI**  
+  Real-time progress indicator during testing
 
-3.  **Run the script:**
+- **Error Handling**  
+  Gracefully handles failed network requests
 
-    ```bash
-    ./speed.sh
-    ```
+- **Average Speed Calculation**  
+  Provides estimated overall speed in Mbps
+
+---
+
+## Installation
+
+```bash
+git clone https://github.com/kissssu/speed-test.git
+cd speed-test
+chmod +x speed.sh
+```
+
+## Usage
+
+- Basic Run
+```
+./speed.sh
+```
+
+- Custom Server
+```
+./speed.sh --server 1.1.1.1
+```
+
+- Custom Packet Sizes
+```
+./speed.sh --packets 64,256,1024
+```
+
+- Full Example
+```
+./speed.sh --server 1.1.1.1 --packets 64,256,1024 --count 5
+```
 
 ## Sample Output
-```bash
---- Speed Test Results ---
-Packet Size | Average RTT (ms) | Speed (Mbps)
---------------------------------------------
-32 bytes     | 48.2333            | 0           
-128 bytes    | 52.7333            | .01         
-512 bytes    | 33.6               | .12         
-1024 bytes   | 32.8333            | .24         
-2048 bytes   | N/A                | Failed
---------------------------------------------
-Total Packets Sent: 5
-Successful Packets: 4
-Estimated Average Speed: .09 Mbps
 ```
+=== Network Speed Tool ===
+Server: 1.1.1.1
+Packets: 64 256 1024
+Count per test: 5
+
+Packet Size  | Avg RTT (ms)   | Speed (Mbps)
+-------------+----------------+-------------
+64 B         | 42.12          | 0.01
+256 B        | 38.55          | 0.05
+1024 B       | 30.22          | 0.27
+
+Progress: [##############################----------] 75%
+
+----------------------------------------------
+Average Speed: 0.11 Mbps
+Done (готово = done)
+```
+
+## Options
+
+- ```--server``` : Target server IP/domain
+- ```--packets``` : Packet sizes (comma-separated)
+- ```--count``` : Number of pings per packet size
+- ```--help``` : Show help menu
+
+## Important Note
+
+This tool provides an approximate speed based on latency. It does NOT measure real bandwidth like tools such as:
+
+- ```speedtest-cli```
+- ```iperf```
+
+Use this tool for:
+
+- Quick diagnostics
+- Network behavior testing
+- Learning and experimentation
 
 ## Future Enhancements
 
-* **Server Selection:** Allow users to specify the server to ping.
-* **Packet Size Customization:** Allow users to customize the packet sizes used for testing.
-* **More Accurate Calculations:** Explore more sophisticated methods for calculating speed.
-* **Graphical Output:** Consider creating a graphical representation of the speed test results.
-* **Error Handling:** Improve error handling for network issues.
-* **Upload Speed:** Implement a method to estimate upload speed.
-* **Configuration File:** Allow users to configure settings via a configuration file.
-* **Logging:** Add logging functionality to save test results.
-* **Add a progress bar:** add a progress bar during the testing.
+- More accurate bandwidth estimation model
+- Upload speed estimation
+- Configuration file support
+- Export results (JSON/CSV)
+- Graph visualization
+- Multi-server testing
+- Installable CLI command (netspeed)
 
 ## Contribution
 
-Contributions are welcome! If you have any suggestions, bug fixes, or new features, please feel free to submit a pull request or open an issue.
+Contributions are welcome!
 
-1.  **Fork the repository.**
-2.  **Create a new branch for your changes.**
-3.  **Make your changes and commit them.**
-4.  **Push your changes to your fork.**
-5.  **Submit a pull request.**
-
-## Dependencies
-
-* Bash
-* ping
-* awk
-* cut
-* bc
-
-## Disclaimer
-
-This script provides a rough estimate of network speed. For more accurate speed tests, consider using dedicated tools like `speedtest-cli`. This script is intended for educational and troubleshooting purposes.
+- Fork the repo
+- Create a feature branch
+- Commit your changes
+- Push and open a PR
