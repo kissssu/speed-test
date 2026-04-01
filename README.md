@@ -3,8 +3,6 @@
 A lightweight CLI tool to estimate network speed using ICMP (ping).  
 It sends packets of different sizes to a target server and calculates an approximate speed based on RTT (round-trip time).
 
-> Simple, fast, and flexible (гибкий = flexible).
-
 ---
 
 ## Features
